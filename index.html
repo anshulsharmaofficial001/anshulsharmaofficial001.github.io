@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anshul Sharma | Penetration Tester</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- Matrix Canvas Background -->
+  <canvas id="matrix"></canvas>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="nav-logo">&lt;AS /&gt;</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="glitch-wrapper">
+        <h1 class="glitch" data-text="Anshul Sharma">Anshul Sharma</h1>
+      </div>
+      <div class="typewriter-wrapper">
+        <span class="prefix">&gt; </span>
+        <span id="typewriter"></span>
+        <span class="cursor">|</span>
+      </div>
+      <p class="tagline">"I don't hack to destroy — I hack to defend"</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/anshulsharmaofficial001" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/anshul-sharma-450a083b1/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:anshulsharmaofficial001@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="hero-img-wrapper">
+      <div class="hex-border">
+        <div class="hex-inner">
+          <img src="photo.jpg" alt="Anshul Sharma" class="hero-photo" />
+        </div>
+      </div>
+      <div class="scan-line"></div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll Down</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title"><span class="accent">//</span> About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="about-intro">Passionate <span class="highlight">Penetration Tester</span> and BCA student with a strong foundation in web application security, OSINT, and ethical hacking.</p>
+          <p>Certified SOC Analyst (EC-Council) with active CEH preparation. Proven practical experience through a 3-month internship at <span class="highlight">PHQ Cyber Cell, Rajasthan Police</span>.</p>
+          <p>Skilled at identifying attack surfaces, chaining vulnerabilities, and delivering actionable security findings. Driven by a <span class="highlight">security-first mindset</span> and a mission to build more resilient systems.</p>
+          <div class="about-stats">
+            <div class="stat-box">
+              <span class="stat-num">6+</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">3mo</span>
+              <span class="stat-label">Internship</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">CSA</span>
+              <span class="stat-label">Certified</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">CTF</span>
+              <span class="stat-label">Active</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-terminal">
+          <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">anshul@kali:~$</span>
+          </div>
+          <div class="terminal-body">
+            <p><span class="cmd">whoami</span></p>
+            <p class="output">anshul_sharma</p>
+            <p><span class="cmd">cat info.txt</span></p>
+            <p class="output">Name    : Anshul Sharma</p>
+            <p class="output">Role    : Penetration Tester</p>
+            <p class="output">Location: Jaipur, Rajasthan</p>
+            <p class="output">Degree  : BCA (5th Sem)</p>
+            <p class="output">College : Maharaja College, Jaipur</p>
+            <p><span class="cmd">cat interests.txt</span></p>
+            <p class="output">CTF Competitions</p>
+            <p class="output">Bug Bounty (Learning)</p>
+            <p class="output">CVE Research</p>
+            <p class="output">Open Source Security Tools</p>
+            <p><span class="cmd blink">_</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section section-dark">
+    <div class="container">
+      <h2 class="section-title"><span class="accent">//</span> Technical Skills</h2>
+      <div class="skills-grid">
+
+        <div class="skill-card" data-aos="fade-up">
+          <div class="skill-icon"><i class="fas fa-crosshairs"></i></div>
+          <h3>Penetration Testing</h3>
+          <div class="skill-tags">
+            <span>Web App Testing</span><span>Network Scanning</span><span>OWASP Top 10</span>
+            <span>SQLi</span><span>XSS</span><span>IDOR</span><span>SSRF</span><span>LFI/RFI</span>
+          </div>
+        </div>
+
+        <div class="skill-card" data-aos="fade-up">
+          <div class="skill-icon"><i class="fas fa-tools"></i></div>
+          <h3>Security Tools</h3>
+          <div class="skill-tags">
+            <span>Burp Suite</span><span>Nmap</span><span>Nikto</span><span>Gobuster</span>
+            <span>Metasploit</span><span>Wireshark</span><span>Hydra</span><span>John the Ripper</span>
+          </div>
+        </div>
+
+        <div class="skill-card" data-aos="fade-up">
+          <div class="skill-icon"><i class="fas fa-search"></i></div>
+          <h3>OSINT & Recon</h3>
+          <div class="skill-tags">
+            <span>Shodan</span><span>WHOIS</span><span>Google Dorking</span>
+            <span>Subdomain Enum</span><span>Passive Footprinting</span>
+          </div>
+        </div>
+
+        <div class="skill-card" data-aos="fade-up">
+          <div class="skill-icon"><i class="fas fa-code"></i></div>
+          <h3>Programming</h3>
+          <div class="skill-tags">
+            <span>Python</span><span>Bash</span><span>C</span><span>C++</span>
+            <span>Java</span><span>HTML/CSS</span><span>JavaScript</span><span>SQL</span>
+          </div>
+        </div>
+
+        <div class="skill-card" data-aos="fade-up">
+          <div class="skill-icon"><i class="fas fa-terminal"></i></div>
+          <h3>OS & Environment</h3>
+          <div class="skill-tags">
+            <span>Kali Linux</span><span>Ubuntu</span><span>VirtualBox</span>
+            <span>VMware</span><span>GitHub</span><span>Terminal-first</span>
+          </div>
+        </div>
+
+        <div class="skill-card" data-aos="fade-up">
+          <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Security Concepts</h3>
+          <div class="skill-tags">
+            <span>Threat Modeling</span><span>Risk Assessment</span>
+            <span>Access Control</span><span>CVE Research</span><span>Incident Response</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title"><span class="accent">//</span> Security Projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <i class="fas fa-robot project-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/anshulsharmaofficial001" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <h3>Automated Reconnaissance Framework</h3>
+          <p>End-to-end recon pipeline automating subdomain enumeration, port scanning, tech-stack fingerprinting, and live host detection. Integrates Shodan API, WHOIS, and DNS brute-forcing.</p>
+          <div class="project-tags">
+            <span>Python</span><span>Bash</span><span>APIs</span><span>Shodan</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i class="fas fa-bug project-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/anshulsharmaofficial001" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <h3>Web Application Vulnerability Scanner</h3>
+          <p>Custom scanner that crawls web apps and actively tests for XSS, SQL injection, open redirects, and missing security headers. Generates severity-rated reports (Critical/High/Medium/Low).</p>
+          <div class="project-tags">
+            <span>Python</span><span>BeautifulSoup</span><span>Requests</span><span>OWASP</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i class="fas fa-ban project-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/anshulsharmaofficial001" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <h3>Fail2Ban-Style Brute Force Blocker</h3>
+          <p>Monitors SSH and web login logs in real-time; automatically blocks attacker IPs using iptables after N failed attempts. Configurable thresholds and whitelist support.</p>
+          <div class="project-tags">
+            <span>Python</span><span>Linux</span><span>iptables</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i class="fas fa-spider project-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/anshulsharmaofficial001" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <h3>SSH Honeypot & Credential Logger</h3>
+          <p>Simulates a fake SSH server to capture attacker credentials, session commands, and brute-force patterns. Logs to structured database for threat intelligence.</p>
+          <div class="project-tags">
+            <span>Python</span><span>Paramiko</span><span>Threat Intel</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i class="fas fa-map-marker-alt project-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/anshulsharmaofficial001/IP-Address-Info-Tool" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <h3>IP Address OSINT Tool</h3>
+          <p>Fetches geolocation, ISP, ASN, and threat reputation data for any IP address. Integrates multiple public APIs for cross-referenced intelligence gathering.</p>
+          <div class="project-tags">
+            <span>Python</span><span>REST API</span><span>OSINT</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i class="fas fa-lock project-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/anshulsharmaofficial001/Login-Attempt-Counter" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <h3>Login Attempt Counter & Lockout Simulator</h3>
+          <p>Simulates authentication with progressive lockout after failed attempts — models real access control mechanisms and demonstrates brute-force defense logic.</p>
+          <div class="project-tags">
+            <span>Python</span><span>Access Control</span><span>Auth Security</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section section-dark">
+    <div class="container">
+      <h2 class="section-title"><span class="accent">//</span> Experience & Education</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Cyber Security Intern</h3>
+              <span class="timeline-date">3 Months · On-site</span>
+            </div>
+            <h4 class="timeline-company"><i class="fas fa-building"></i> PHQ Cyber Cell · Rajasthan Police, India</h4>
+            <ul>
+              <li>Assisted in real-world cybercrime investigations including digital evidence handling and OSINT-based suspect profiling.</li>
+              <li>Performed passive and active reconnaissance on suspicious IPs, social media profiles, and domains.</li>
+              <li>Analyzed network logs and assisted senior analysts in identifying threat indicators and attack patterns.</li>
+              <li>Supported drafting of incident reports and gained exposure to government-level cyber law procedures.</li>
+              <li>Shadowed penetration test assessments on internal infrastructure.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Bachelor of Computer Applications (BCA)</h3>
+              <span class="timeline-date">2023 – 2026 · 5th Sem</span>
+            </div>
+            <h4 class="timeline-company"><i class="fas fa-university"></i> Maharaja College, Jaipur · University of Rajasthan</h4>
+            <ul>
+              <li>Relevant coursework: Data Structures, Computer Networks, Database Management, Operating Systems, Web Technologies.</li>
+              <li>Active member of college tech community; focused on cybersecurity self-study alongside academics.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTF Section -->
+      <div class="ctf-section">
+        <h3 class="ctf-title"><i class="fas fa-flag"></i> CTF & Practice Labs</h3>
+        <div class="ctf-grid">
+          <div class="ctf-card">
+            <div class="ctf-logo thm">TryHackMe</div>
+            <p>All Free Rooms Completed</p>
+            <div class="ctf-tags">
+              <span>Pre-Security</span><span>Jr Pen Tester</span><span>SOC Level 1</span>
+              <span>Linux Fundamentals</span><span>Privilege Escalation</span><span>Active Directory</span>
+            </div>
+          </div>
+          <div class="ctf-card">
+            <div class="ctf-logo htb">Hack The Box</div>
+            <p>Free Machines & Challenges</p>
+            <div class="ctf-tags">
+              <span>Starting Point Tier 0 & 1</span><span>Forensics</span>
+              <span>Web Challenges</span><span>Crypto</span><span>Sherlocks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="section">
+    <div class="container">
+      <h2 class="section-title"><span class="accent">//</span> Certifications</h2>
+      <div class="cert-grid">
+
+        <div class="cert-card active-cert">
+          <div class="cert-badge">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="cert-info">
+            <h3>Certified SOC Analyst (CSA)</h3>
+            <p class="cert-issuer"><i class="fas fa-award"></i> EC-Council</p>
+            <p class="cert-num">Cert No: ECC2109548637</p>
+            <p class="cert-date">Issued: 26 Feb 2026 · Valid till: March 2027</p>
+            <div class="cert-topics">
+              <span>SIEM</span><span>Threat Monitoring</span><span>Incident Response</span><span>SOC Workflows</span>
+            </div>
+          </div>
+          <div class="cert-status active">ACTIVE</div>
+        </div>
+
+        <div class="cert-card progress-cert">
+          <div class="cert-badge">
+            <i class="fas fa-spinner fa-spin"></i>
+          </div>
+          <div class="cert-info">
+            <h3>Certified Ethical Hacker (CEH)</h3>
+            <p class="cert-issuer"><i class="fas fa-award"></i> EC-Council</p>
+            <p class="cert-date">Actively Preparing</p>
+            <div class="cert-topics">
+              <span>Ethical Hacking</span><span>Web Security</span><span>Network Security</span><span>Exploitation</span>
+            </div>
+          </div>
+          <div class="cert-status in-progress">IN PROGRESS</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section section-dark">
+    <div class="container">
+      <h2 class="section-title"><span class="accent">//</span> Contact</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <p class="contact-intro">Open to internships, collaborations, and cybersecurity opportunities. Let's connect.</p>
+          <div class="contact-items">
+            <a href="mailto:anshulsharmaofficial001@gmail.com" class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>anshulsharmaofficial001@gmail.com</span>
+            </a>
+            <a href="https://github.com/anshulsharmaofficial001" target="_blank" class="contact-item">
+              <i class="fab fa-github"></i>
+              <span>github.com/anshulsharmaofficial001</span>
+            </a>
+            <a href="https://www.linkedin.com/in/anshul-sharma-450a083b1/" target="_blank" class="contact-item">
+              <i class="fab fa-linkedin"></i>
+              <span>linkedin.com/in/anshul-sharma-450a083b1</span>
+            </a>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Jaipur, Rajasthan, India</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+91 70233 65486</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-terminal">
+          <div class="terminal-header">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="terminal-title">ping anshul</span>
+          </div>
+          <div class="terminal-body">
+            <p><span class="cmd">ping anshulsharma.dev</span></p>
+            <p class="output">PING anshulsharma.dev: 56 bytes of data</p>
+            <p class="output success">64 bytes: icmp_seq=0 ttl=64 time=0.1ms</p>
+            <p class="output success">64 bytes: icmp_seq=1 ttl=64 time=0.1ms</p>
+            <p class="output">--- anshulsharma.dev ping statistics ---</p>
+            <p class="output success">Connection established. Ready to collaborate!</p>
+            <p><span class="cmd blink">_</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&lt;Anshul Sharma /&gt; · Penetration Tester · Jaipur, India</p>
+    <p class="footer-sub">Built with passion for security &amp; code</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
