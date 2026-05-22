@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anshulsharmaofficial001.github.io/sitemap.xml
