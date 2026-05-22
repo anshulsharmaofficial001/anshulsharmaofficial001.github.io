@@ -304,6 +304,14 @@ ul { list-style: none; }
   font-size: 0.7rem;
   color: var(--text-dim);
   animation: float 2s ease-in-out infinite;
+  text-decoration: none;
+  cursor: pointer;
+}
+.scroll-indicator:hover {
+  color: var(--cyan);
+}
+.scroll-indicator:hover .scroll-arrow {
+  border-color: var(--cyan);
 }
 .scroll-arrow {
   width: 20px; height: 20px;
@@ -798,5 +806,13 @@ footer {
   }
 }
 
-/* Hide default cursor site-wide */
-* { cursor: none !important; }
+/* Hide default cursor site-wide (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+/* ===== CURSOR RING SPIN ===== */
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
