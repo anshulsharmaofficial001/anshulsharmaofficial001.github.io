@@ -25,13 +25,22 @@
   <meta name="twitter:description" content="Certified SOC Analyst | Ethical Hacker | OSINT Specialist"/>
   <meta name="twitter:image" content="https://anshulsharmaofficial001.github.io/photo.jpg"/>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dragon.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>html{scroll-behavior:smooth}.section-title,.about-grid,.skills-grid,.projects-grid,.timeline,.cert-grid,.threat-grid,.contact-wrapper{will-change:transform,opacity;backface-visibility:hidden}</style>
 </head>
-<body>
+<body class="dragon-theme">
 
   <!-- Matrix Canvas Background -->
   <canvas id="matrix"></canvas>
+
+  <!-- Dragon Background -->
+  <div class="dragon-bg">
+    <img src="dragon.jpg" alt="" class="dragon-img"/>
+    <div class="dragon-fire-glow"></div>
+    <div class="dragon-overlay"></div>
+  </div>
 
   <!-- Navbar -->
   <nav id="navbar">
@@ -43,6 +52,8 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#certifications">Certs</a></li>
+      <li><a href="resume.html" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a></li>
+      <li><a href="card.html" target="_blank"><i class="fas fa-id-card"></i> Card</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="hamburger" id="hamburger">
@@ -63,8 +74,10 @@
       </div>
       <p class="tagline">"I don't hack to destroy — I hack to defend"</p>
       <div class="hero-btns">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-outline">Contact Me</a>
+        <a href="#projects" class="btn btn-primary btn-animated"><i class="fas fa-code"></i> View Projects</a>
+        <a href="#contact" class="btn btn-outline btn-animated"><i class="fas fa-paper-plane"></i> Contact Me</a>
+        <a href="resume.html" target="_blank" class="btn btn-outline btn-animated"><i class="fas fa-file-pdf"></i> Resume</a>
+        <a href="card.html" target="_blank" class="btn btn-outline btn-animated"><i class="fas fa-id-card"></i> Digital Card</a>
       </div>
       <div class="hero-socials">
         <a href="https://github.com/anshulsharmaofficial001" target="_blank"><i class="fab fa-github"></i></a>
@@ -128,7 +141,7 @@
             <p class="output">Name    : Anshul Sharma</p>
             <p class="output">Role    : Penetration Tester</p>
             <p class="output">Location: Jaipur, Rajasthan</p>
-            <p class="output">Degree  : BCA (5th Sem)</p>
+            <p class="output">Degree  : BCA (6th Sem)</p>
             <p class="output">College : Maharaja College, Jaipur</p>
             <p><span class="cmd">cat interests.txt</span></p>
             <p class="output">CTF Competitions</p>
@@ -329,7 +342,7 @@
           <div class="timeline-content">
             <div class="timeline-header">
               <h3>Bachelor of Computer Applications (BCA)</h3>
-              <span class="timeline-date">2023 – 2026 · 5th Sem</span>
+              <span class="timeline-date">2023 – 2026 · 6th Sem</span>
             </div>
             <h4 class="timeline-company"><i class="fas fa-university"></i> Maharaja College, Jaipur · University of Rajasthan</h4>
             <ul>
@@ -407,6 +420,25 @@
     </div>
   </section>
 
+  <!-- Threat Center Section -->
+  <section id="threat-center" class="section">
+    <div class="container">
+      <h2 class="section-title"><span class="accent">//</span> SOC Threat Intelligence Map</h2>
+      <div class="threat-grid">
+        <div class="threat-map-card" style="grid-column:1/-1">
+          <div class="panel-header">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="panel-title"><i class="fas fa-globe"></i> Interactive 3D Threat Globe</span>
+          </div>
+          <div class="panel-body map-container">
+            <canvas id="threat-globe"></canvas>
+            <div class="globe-overlay-hint">Drag to rotate globe</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
   <section id="contact" class="section section-dark">
     <div class="container">
@@ -463,5 +495,25 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Smooth section reveal animations
+    const smoothObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          requestAnimationFrame(() => {
+            entry.target.style.transition = 'opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1)';
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          });
+          smoothObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.section-title, .about-grid, .skills-grid, .projects-grid, .timeline, .cert-grid, .threat-grid, .contact-wrapper').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      smoothObserver.observe(el);
+    });
+  </script>
 </body>
 </html>
