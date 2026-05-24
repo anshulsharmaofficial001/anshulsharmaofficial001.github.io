@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anshul Sharma - Digital Business Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #050a0e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Rajdhani', sans-serif;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    /* ===== CARD FRONT ===== */
+    .card-scene {
+      width: 420px;
+      height: 240px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .card-scene:hover .card {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* FRONT */
+    .card-front {
+      background: linear-gradient(135deg, #050a0e 0%, #0a1520 50%, #050a0e 100%);
+      border: 1px solid rgba(0,245,255,0.3);
+      box-shadow: 0 0 40px rgba(0,245,255,0.15), inset 0 0 40px rgba(0,245,255,0.03);
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-front::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #00f5ff, #00ff88, #00f5ff, transparent);
+    }
+
+    .card-front::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,245,255,0.3), transparent);
+    }
+
+    /* Circuit pattern */
+    .circuit {
+      position: absolute;
+      top: 0; right: 0;
+      width: 150px; height: 150px;
+      opacity: 0.06;
+      background-image:
+        linear-gradient(#00f5ff 1px, transparent 1px),
+        linear-gradient(90deg, #00f5ff 1px, transparent 1px);
+      background-size: 20px 20px;
+      border-radius: 0 12px 0 0;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      color: #00f5ff;
+      text-shadow: 0 0 15px #00f5ff;
+      letter-spacing: 2px;
+    }
+
+    .card-badge {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      color: #00ff88;
+      border: 1px solid rgba(0,255,136,0.4);
+      padding: 0.2rem 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .card-middle {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px rgba(0,245,255,0.3);
+      margin-bottom: 0.3rem;
+    }
+
+    .card-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: #00f5ff;
+      letter-spacing: 1px;
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .card-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .card-contact-item {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: rgba(200,214,223,0.7);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card-contact-item i {
+      color: #00f5ff;
+      width: 10px;
+      font-size: 0.6rem;
+    }
+
+    .card-qr {
+      width: 55px;
+      height: 55px;
+      border: 1px solid rgba(0,245,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .card-qr::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background:
+        linear-gradient(#00f5ff 1px, transparent 1px),
+        linear-gradient(90deg, #00f5ff 1px, transparent 1px);
+      background-size: 6px 6px;
+      opacity: 0.4;
+    }
+
+    .card-qr span {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.45rem;
+      color: #00f5ff;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* BACK */
+    .card-back {
+      background: linear-gradient(135deg, #0a1520 0%, #050a0e 100%);
+      border: 1px solid rgba(0,245,255,0.2);
+      box-shadow: 0 0 40px rgba(0,245,255,0.1);
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem;
+    }
+
+    .card-back::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #00ff88, #00f5ff, #00ff88, transparent);
+    }
+
+    .back-tagline {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: #00f5ff;
+      text-align: center;
+      border-left: 2px solid #00f5ff;
+      padding-left: 0.8rem;
+      font-style: italic;
+    }
+
+    .back-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: center;
+    }
+
+    .back-skill {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(0,245,255,0.08);
+      border: 1px solid rgba(0,245,255,0.2);
+      color: #00f5ff;
+    }
+
+    .back-socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .back-socials a {
+      color: rgba(200,214,223,0.5);
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .back-socials a:hover {
+      color: #00f5ff;
+      text-shadow: 0 0 10px #00f5ff;
+    }
+
+    .back-url {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: #00ff88;
+      letter-spacing: 1px;
+    }
+
+    /* Hint text */
+    .hint {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: rgba(90,122,138,0.6);
+      letter-spacing: 1px;
+    }
+
+    /* Scan animation on card */
+    .scan {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00f5ff, transparent);
+      animation: scanCard 3s linear infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes scanCard {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
+
+    /* Download button */
+    .download-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      padding: 0.6rem 1.5rem;
+      background: transparent;
+      border: 1px solid #00f5ff;
+      color: #00f5ff;
+      cursor: pointer;
+      letter-spacing: 2px;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .download-btn:hover {
+      background: #00f5ff;
+      color: #050a0e;
+      box-shadow: 0 0 20px rgba(0,245,255,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-scene">
+    <div class="card">
+
+      <!-- FRONT -->
+      <div class="card-front">
+        <div class="circuit"></div>
+        <div class="scan"></div>
+
+        <div class="card-top">
+          <div class="card-logo">&lt;AS /&gt;</div>
+          <div class="card-badge">✓ CSA CERTIFIED</div>
+        </div>
+
+        <div class="card-middle">
+          <div class="card-name">Anshul Sharma</div>
+          <div class="card-title">Penetration Tester · SOC Analyst · Ethical Hacker</div>
+        </div>
+
+        <div class="card-bottom">
+          <div class="card-contact">
+            <div class="card-contact-item">
+              <i class="fas fa-envelope"></i>
+              anshulsharmaofficial001@gmail.com
+            </div>
+            <div class="card-contact-item">
+              <i class="fab fa-github"></i>
+              github.com/anshulsharmaofficial001
+            </div>
+            <div class="card-contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              Jaipur, Rajasthan, India
+            </div>
+          </div>
+          <div class="card-qr">
+            <span>SCAN<br/>ME</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BACK -->
+      <div class="card-back">
+        <div class="back-tagline">"I don't hack to destroy — I hack to defend"</div>
+        <div class="back-skills">
+          <span class="back-skill">Burp Suite</span>
+          <span class="back-skill">Nmap</span>
+          <span class="back-skill">OWASP</span>
+          <span class="back-skill">Python</span>
+          <span class="back-skill">OSINT</span>
+          <span class="back-skill">Kali Linux</span>
+          <span class="back-skill">Metasploit</span>
+          <span class="back-skill">Wireshark</span>
+        </div>
+        <div class="back-socials">
+          <a href="https://github.com/anshulsharmaofficial001" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/anshul-sharma-7461873a1/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:anshulsharmaofficial001@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div class="back-url">anshulsharmaofficial001.github.io</div>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="hint">[ Hover over card to flip ]</p>
+
+</body>
+</html>

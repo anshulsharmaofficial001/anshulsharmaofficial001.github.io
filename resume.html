@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anshul Sharma - Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root {
+  --bg: #0a0f14;
+  --card: #0d1a26;
+  --text: #c8d6df;
+  --text-dim: #5a7a8a;
+  --text-dark: #fff;
+  --cyan: #00f5ff;
+  --green: #00ff88;
+  --border: rgba(0,245,255,0.1);
+  --border-bold: rgba(0,245,255,0.12);
+  --sk-bg: rgba(0,245,255,0.03);
+}
+
+body.light-mode {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #334155;
+  --text-dim: #475569;
+  --text-dark: #0f172a;
+  --cyan: #0284c7;
+  --green: #0d9488;
+  --border: rgba(148, 163, 184, 0.16);
+  --border-bold: rgba(2, 132, 199, 0.2);
+  --sk-bg: rgba(2, 132, 199, 0.03);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { 
+  font-family:'Inter',sans-serif; 
+  background: var(--bg); 
+  color: var(--text); 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center; 
+  padding:2rem; 
+  gap:1rem; 
+  transition: background 0.5s ease, color 0.5s ease;
+}
+.r { 
+  max-width:850px; 
+  width:100%; 
+  background: var(--card); 
+  border:1px solid var(--border); 
+  overflow:hidden; 
+  transition: background 0.5s ease, border-color 0.5s ease;
+}
+.r-h { 
+  background: linear-gradient(135deg, var(--card), var(--bg)); 
+  border-bottom:2px solid var(--border-bold); 
+  padding:2rem 2.5rem; 
+  display:flex; 
+  justify-content:space-between; 
+  gap:2rem; 
+  transition: border-color 0.5s ease;
+}
+.r-h h1 { font-size:2rem; font-weight:800; color: var(--text-dark); letter-spacing:1px; }
+.r-h h1 span { color: var(--cyan); }
+.r-h .t { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color: var(--green); letter-spacing:1px; }
+.r-h .c { text-align:right; font-size:0.72rem; line-height:1.8; color: var(--text-dim); }
+.r-h .c a { color: var(--cyan); text-decoration:none; display:block; }
+.r-h .c i { width:14px; margin-right:4px; color: var(--cyan); }
+.r-b { padding:2rem 2.5rem; }
+.s { margin-bottom:1.8rem; }
+.st { 
+  font-size:0.8rem; 
+  font-weight:700; 
+  color: var(--cyan); 
+  letter-spacing:2px; 
+  text-transform:uppercase; 
+  margin-bottom:1rem; 
+  padding-bottom:0.3rem; 
+  border-bottom:1px solid var(--border); 
+  display:flex; 
+  align-items:center; 
+  gap:0.5rem; 
+}
+.st i { font-size:0.7rem; }
+p { font-size:0.85rem; line-height:1.7; color: var(--text-dim); }
+.sk { display:flex; flex-wrap:wrap; gap:0.5rem; }
+.sk-g { 
+  background: var(--sk-bg); 
+  border:1px solid var(--border); 
+  padding:0.6rem 1rem; 
+  flex:1; 
+  min-width:180px; 
+  transition: background 0.5s ease, border-color 0.5s ease;
+}
+.sk-g h4 { font-size:0.7rem; color: var(--green); margin-bottom:0.4rem; font-weight:600; }
+.sk-g h4 i { color: var(--cyan); margin-right:0.3rem; }
+.sk-g p { font-size:0.72rem; }
+.ei { margin-bottom:1rem; padding-left:1rem; border-left:2px solid var(--border-bold); transition: border-color 0.5s ease; }
+.eh { display:flex; justify-content:space-between; margin-bottom:0.2rem; flex-wrap:wrap; gap:0.3rem; }
+.eh h3 { font-size:0.85rem; font-weight:600; color: var(--text-dark); }
+.eh .d { font-family:'JetBrains Mono',monospace; font-size:0.65rem; color: var(--text-dim); }
+.ec { font-size:0.75rem; color: var(--cyan); margin-bottom:0.3rem; }
+.ei ul { padding-left:1rem; }
+.ei li { font-size:0.75rem; color: var(--text-dim); line-height:1.6; margin-bottom:0.2rem; }
+.r-f { 
+  background: var(--card); 
+  border-top:1px solid var(--border); 
+  padding:1rem 2.5rem; 
+  display:flex; 
+  justify-content:space-between; 
+  font-size:0.68rem; 
+  color: var(--text-dim); 
+  transition: background 0.5s ease, border-color 0.5s ease;
+}
+.btn { 
+  font-family:'JetBrains Mono',monospace; 
+  font-size:0.8rem; 
+  padding:0.6rem 1.5rem; 
+  border:1px solid var(--cyan); 
+  color: var(--cyan); 
+  background:transparent; 
+  cursor:pointer; 
+  letter-spacing:1px; 
+  text-decoration:none; 
+  display:inline-flex; 
+  align-items:center; 
+  gap:0.5rem; 
+  transition:all 0.3s; 
+}
+.btn:hover { background: var(--cyan); color: var(--bg); }
+
+#theme-toggle {
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  background: rgba(0, 245, 255, 0.04);
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+body.light-mode #theme-toggle {
+  background: rgba(2, 132, 199, 0.06);
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.1);
+}
+@media print { 
+  body { background:#fff; padding:0; color:#000; } 
+  .r { box-shadow:none; border:none; background:#fff; } 
+  .r-h { background:#fff; border-bottom:2px solid #000; } 
+  .r-h h1 { color:#000; } 
+  .r-h h1 span { color:#0891b2; } 
+  .r-h .t { color:#059669; } 
+  .r-h .c { color:#666; } 
+  .r-h .c a { color:#0891b2; } 
+  .st { color:#0891b2; } 
+  .sk-g { border-color:#ddd; background:#fff; } 
+  .sk-g h4 { color:#059669; } 
+  .eh h3 { color:#000; } 
+  .ec { color:#0891b2; } 
+  .ei li { color:#444; } 
+  .r-f { background:#f5f5f5; color:#666; } 
+  .btn { display:none; } 
+}
+@media (max-width:768px) { .r-h { flex-direction:column; text-align:center; padding:1.5rem; } .r-h .c { text-align:center; } .r-b { padding:1.5rem; } .sk { flex-direction:column; } }
+</style>
+</head>
+<body>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;width:100%;max-width:850px;justify-content:space-between;align-items:center">
+  <div style="display:flex;gap:1rem;flex-wrap:wrap">
+    <button class="btn" onclick="window.print()"><i class="fas fa-download"></i> Download PDF</button>
+    <a href="index.html" class="btn"><i class="fas fa-arrow-left"></i> Portfolio</a>
+  </div>
+  <button class="btn" id="theme-toggle"><i class="fas fa-sun"></i> Light Mode</button>
+</div>
+<div class="r">
+  <div class="r-h">
+    <div>
+      <h1>Anshul <span>Sharma</span></h1>
+      <div class="t">Penetration Tester · SOC Analyst · Ethical Hacker</div>
+    </div>
+    <div class="c">
+      <a href="mailto:anshulsharmaofficial001@gmail.com"><i class="fas fa-envelope"></i> anshulsharmaofficial001@gmail.com</a>
+      <a href="tel:+917023365486"><i class="fas fa-phone"></i> +91 70233 65486</a>
+      <a href="https://github.com/anshulsharmaofficial001"><i class="fab fa-github"></i> github.com/anshulsharmaofficial001</a>
+      <a href="https://linkedin.com/in/anshul-sharma-7461873a1"><i class="fab fa-linkedin"></i> linkedin.com/in/anshul-sharma-7461873a1</a>
+      <i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan, India
+    </div>
+  </div>
+  <div class="r-b">
+    <div class="s">
+      <div class="st"><i class="fas fa-user"></i> Summary</div>
+      <p>Certified SOC Analyst (EC-Council) and BCA (6th Sem) student skilled in penetration testing, web security, and OSINT. Internship at PHQ Cyber Cell, Rajasthan Police.</p>
+    </div>
+    <div class="s">
+      <div class="st"><i class="fas fa-code"></i> Skills</div>
+      <div class="sk">
+        <div class="sk-g"><h4><i class="fas fa-crosshairs"></i> Pen Testing</h4><p>OWASP Top 10, SQLi, XSS, IDOR, Network Scanning</p></div>
+        <div class="sk-g"><h4><i class="fas fa-tools"></i> Tools</h4><p>Burp Suite, Nmap, Metasploit, Wireshark, Hydra</p></div>
+        <div class="sk-g"><h4><i class="fas fa-search"></i> OSINT</h4><p>Shodan, Google Dorking, Subdomain Enum, WHOIS</p></div>
+        <div class="sk-g"><h4><i class="fas fa-terminal"></i> Languages</h4><p>Python, Bash, C, C++, JavaScript, SQL</p></div>
+      </div>
+    </div>
+    <div class="s">
+      <div class="st"><i class="fas fa-briefcase"></i> Experience</div>
+      <div class="ei">
+        <div class="eh"><h3>Cyber Security Intern</h3><span class="d">3 Months · On-site</span></div>
+        <div class="ec"><i class="fas fa-building"></i> PHQ Cyber Cell · Rajasthan Police, India</div>
+        <ul>
+          <li>Assisted in real-world cybercrime investigations including digital evidence handling and OSINT-based suspect profiling.</li>
+          <li>Performed passive and active reconnaissance on suspicious IPs, social media profiles, and domains.</li>
+          <li>Analyzed network logs and assisted senior analysts in identifying threat indicators and attack patterns.</li>
+          <li>Supported drafting of incident reports and gained exposure to government-level cyber law procedures.</li>
+          <li>Shadowed penetration test assessments on internal infrastructure.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="s">
+      <div class="st"><i class="fas fa-rocket"></i> Projects</div>
+      <div class="ei"><div class="eh"><h3>Automated Reconnaissance Framework</h3></div><p>Recon pipeline automating subdomain enumeration, port scanning, tech fingerprinting, and live host detection with Shodan API integration.</p></div>
+      <div class="ei"><div class="eh"><h3>Web Application Vulnerability Scanner</h3></div><p>Custom scanner testing XSS, SQLi, open redirects, missing security headers with severity-rated reports.</p></div>
+      <div class="ei"><div class="eh"><h3>Fail2Ban-Style Brute Force Blocker</h3></div><p>Real-time SSH/web login monitor with automatic iptables IP blocking and configurable thresholds.</p></div>
+      <div class="ei"><div class="eh"><h3>SSH Honeypot & Credential Logger</h3></div><p>Fake SSH server capturing attacker credentials, session commands, and brute-force patterns for threat intel.</p></div>
+      <div class="ei"><div class="eh"><h3>IP Address OSINT Tool</h3></div><p>OSINT tool fetching geolocation, ISP, ASN, and threat reputation for any IP via multiple public APIs.</p></div>
+      <div class="ei"><div class="eh"><h3>Login Attempt Counter & Lockout Simulator</h3></div><p>Authentication simulation demonstrating progressive account lockout after repeated failed login attempts.</p></div>
+    </div>
+    <div class="s">
+      <div class="st"><i class="fas fa-graduation-cap"></i> Education</div>
+      <div class="ei">
+        <div class="eh"><h3>BCA (6th Sem)</h3><span class="d">2023 – 2026</span></div>
+        <div class="ec">Maharaja College, Jaipur · University of Rajasthan</div>
+        <ul><li>Coursework: Data Structures, Computer Networks, DBMS, OS, Web Technologies</li></ul>
+      </div>
+    </div>
+    <div class="s">
+      <div class="st"><i class="fas fa-flag"></i> CTF & Practice Labs</div>
+      <div class="sk">
+        <div class="sk-g"><h4><i class="fas fa-shield-alt"></i> TryHackMe</h4><p>All free rooms completed · Pre-Security, Jr Pen Tester, SOC Level 1, AD, PrivEsc</p></div>
+        <div class="sk-g"><h4><i class="fas fa-skull"></i> Hack The Box</h4><p>Free machines & challenges · Starting Point, Forensics, Web, Crypto, Sherlocks</p></div>
+      </div>
+    </div>
+    <div class="s">
+      <div class="st"><i class="fas fa-certificate"></i> Certifications</div>
+      <div class="ei" style="border-left-color:#00ff88">
+        <div class="eh"><h3>Certified SOC Analyst (CSA)</h3><span class="d" style="color:#00ff88">ACTIVE</span></div>
+        <div class="ec">EC-Council · Cert: ECC2109548637</div>
+      </div>
+      <div class="ei" style="border-left-color:#ffaa00">
+        <div class="eh"><h3>Certified Ethical Hacker (CEH)</h3><span class="d" style="color:#ffaa00">IN PROGRESS</span></div>
+        <div class="ec">EC-Council</div>
+      </div>
+    </div>
+  </div>
+  <div class="r-f">
+    <span>&lt;Anshul Sharma /&gt;</span>
+    <span>Portfolio: anshulsharmaofficial001.github.io</span>
+  </div>
+</div>
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const toggleIcon = toggleBtn.querySelector('i');
+    const toggleText = toggleBtn.lastChild;
+    
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.body.classList.add('light-mode');
+        toggleIcon.className = 'fas fa-moon';
+        toggleText.textContent = ' Dark Mode';
+        localStorage.setItem('portfolio-theme', 'light');
+      } else {
+        document.body.classList.remove('light-mode');
+        toggleIcon.className = 'fas fa-sun';
+        toggleText.textContent = ' Light Mode';
+        localStorage.setItem('portfolio-theme', 'dark');
+      }
+    }
+    
+    // Sync on load
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+    applyTheme(savedTheme);
+    
+    toggleBtn.addEventListener('click', () => {
+      if (document.body.classList.contains('light-mode')) {
+        applyTheme('dark');
+      } else {
+        applyTheme('light');
+      }
+    });
+  </script>
+</body>
+</html>
