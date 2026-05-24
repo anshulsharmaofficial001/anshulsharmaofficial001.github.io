@@ -11,14 +11,21 @@ let columns = Math.floor(canvas.width / fontSize);
 const drops = Array(columns).fill(1);
 
 function drawMatrix() {
-  ctx.fillStyle = 'rgba(5, 10, 14, 0.05)';
+  const isLight = document.body.classList.contains('light-mode');
+  const style = getComputedStyle(document.documentElement);
+  
+  // Set transparent fade-out trails depending on theme
+  ctx.fillStyle = isLight ? 'rgba(248, 250, 252, 0.15)' : 'rgba(5, 10, 14, 0.05)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#00f5ff';
+  
+  const primaryColor = style.getPropertyValue('--cyan').trim() || '#00f5ff';
+  const secondaryColor = style.getPropertyValue('--green').trim() || '#00ff88';
+  
   ctx.font = fontSize + 'px Share Tech Mono';
 
   for (let i = 0; i < drops.length; i++) {
     const char = chars[Math.floor(Math.random() * chars.length)];
-    ctx.fillStyle = Math.random() > 0.95 ? '#00ff88' : '#00f5ff';
+    ctx.fillStyle = Math.random() > 0.95 ? secondaryColor : primaryColor;
     ctx.fillText(char, i * fontSize, drops[i] * fontSize);
     if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
     drops[i]++;
@@ -144,12 +151,12 @@ cursorDot.style.cssText = `
   position: fixed;
   width: 8px;
   height: 8px;
-  background: #00f5ff;
+  background: var(--cyan);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 10px #00f5ff, 0 0 20px #00f5ff;
+  box-shadow: 0 0 10px var(--cyan), 0 0 20px var(--cyan);
   transition: width 0.2s, height 0.2s, background 0.2s;
 `;
 document.body.appendChild(cursorDot);
@@ -161,7 +168,8 @@ cursorRing.style.cssText = `
   position: fixed;
   width: 36px;
   height: 36px;
-  border: 1.5px solid rgba(0,245,255,0.7);
+  border: 1.5px solid var(--cyan);
+  opacity: 0.7;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
@@ -176,7 +184,8 @@ crossH.style.cssText = `
   position: fixed;
   width: 20px;
   height: 1px;
-  background: rgba(0,245,255,0.5);
+  background: var(--cyan);
+  opacity: 0.5;
   pointer-events: none;
   z-index: 99997;
   transform: translate(-50%, -50%);
@@ -188,7 +197,8 @@ crossV.style.cssText = `
   position: fixed;
   width: 1px;
   height: 20px;
-  background: rgba(0,245,255,0.5);
+  background: var(--cyan);
+  opacity: 0.5;
   pointer-events: none;
   z-index: 99997;
   transform: translate(-50%, -50%);
@@ -202,7 +212,7 @@ glow.style.cssText = `
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,245,255,0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--globe-color), 0.08) 0%, transparent 70%);
   pointer-events: none;
   z-index: 99996;
   transform: translate(-50%, -50%);
@@ -366,48 +376,45 @@ function staggerCards(selector, delay = 100) {
 staggerCards('.skill-card', 80);
 staggerCards('.project-card', 80);
 
-// ===== THEME TOGGLE: HACKER VS EXECUTIVE MODE =====
+// ===== THEME TOGGLER: DARK MODE VS LIGHT MODE =====
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle.querySelector('i');
 const themeText = themeToggle.querySelector('.theme-text');
 
-// State flags
 let isMatrixActive = true;
 
-function setHackerMode() {
-  document.body.classList.remove('executive-mode');
-  themeIcon.className = 'fas fa-user-tie';
-  themeText.textContent = 'Executive Mode';
-  themeToggle.title = 'Switch to Executive Mode';
-  localStorage.setItem('portfolio-theme', 'hacker');
-  isMatrixActive = true;
+function applyTheme(theme) {
+  if (theme === 'light') {
+    document.body.classList.add('light-mode');
+    isMatrixActive = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update button to represent action to go to Dark Mode
+    themeIcon.className = 'fas fa-moon';
+    themeText.textContent = 'Dark Mode';
+    themeToggle.title = 'Switch to Dark Mode';
+    localStorage.setItem('portfolio-theme', 'light');
+  } else {
+    document.body.classList.remove('light-mode');
+    isMatrixActive = true;
+    
+    // Update button to represent action to go to Light Mode
+    themeIcon.className = 'fas fa-sun';
+    themeText.textContent = 'Light Mode';
+    themeToggle.title = 'Switch to Light Mode';
+    localStorage.setItem('portfolio-theme', 'dark');
+  }
 }
 
-function setExecutiveMode() {
-  document.body.classList.add('executive-mode');
-  themeIcon.className = 'fas fa-terminal';
-  themeText.textContent = 'Hacker Mode';
-  themeToggle.title = 'Switch to Hacker Mode';
-  localStorage.setItem('portfolio-theme', 'executive');
-  isMatrixActive = false;
-  
-  // Clear matrix canvas for performance in executive mode
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-// Load saved theme
-const savedTheme = localStorage.getItem('portfolio-theme');
-if (savedTheme === 'executive') {
-  setExecutiveMode();
-} else {
-  setHackerMode();
-}
+// Load saved theme (default is dark mode)
+const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+applyTheme(savedTheme);
 
 themeToggle.addEventListener('click', () => {
-  if (document.body.classList.contains('executive-mode')) {
-    setHackerMode();
+  if (document.body.classList.contains('light-mode')) {
+    applyTheme('dark');
   } else {
-    setExecutiveMode();
+    applyTheme('light');
   }
 });
 
@@ -425,9 +432,9 @@ const globeCanvas = document.getElementById('threat-globe');
 if (globeCanvas) {
   const gctx = globeCanvas.getContext('2d');
   
-  let width = globeCanvas.width = 360;
-  let height = globeCanvas.height = 360;
-  let radius = 130;
+  let width = globeCanvas.width = 700;
+  let height = globeCanvas.height = 700;
+  let radius = 160;
   
   // High-density dot coordinate points (Latitude and Longitude rings)
   let points = [];
@@ -524,8 +531,8 @@ if (globeCanvas) {
     let y2 = p.y * cosX - z1 * sinX;
     let z2 = p.y * sinX + z1 * cosX;
     
-    let fov = 350;
-    let distance = 260;
+    let fov = 400;
+    let distance = 360;
     let scale = fov / (distance + z2);
     
     return {
@@ -540,9 +547,10 @@ if (globeCanvas) {
   function drawGlobe() {
     gctx.clearRect(0, 0, width, height);
     
-    const isExecutive = document.body.classList.contains('executive-mode');
-    const baseColor = isExecutive ? '59, 130, 246' : '0, 245, 255';
-    const gridColor = isExecutive ? 'rgba(59, 130, 246, 0.12)' : 'rgba(0, 245, 255, 0.12)';
+    // Read theme color from CSS variable
+    const style = getComputedStyle(document.documentElement);
+    const baseColor = style.getPropertyValue('--globe-color').trim() || '0, 245, 255';
+    const gridColor = `rgba(${baseColor}, 0.2)`;
     
     if (!isDragging) {
       rotationY += 0.002;
@@ -552,6 +560,22 @@ if (globeCanvas) {
       orig: p,
       proj: project(p, rotationX, rotationY)
     }));
+    
+    // Outer glow ring
+    gctx.beginPath();
+    gctx.arc(width/2, height/2, radius * 0.92, 0, Math.PI * 2);
+    gctx.strokeStyle = `rgba(${baseColor}, 0.08)`;
+    gctx.lineWidth = 1.5;
+    gctx.stroke();
+    
+    // Inner subtle glow
+    const grad = gctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, radius);
+    grad.addColorStop(0, `rgba(${baseColor}, 0.03)`);
+    grad.addColorStop(1, `rgba(${baseColor}, 0)`);
+    gctx.fillStyle = grad;
+    gctx.beginPath();
+    gctx.arc(width/2, height/2, radius, 0, Math.PI * 2);
+    gctx.fill();
     
     gctx.strokeStyle = gridColor;
     gctx.lineWidth = 0.5;
@@ -583,10 +607,19 @@ if (globeCanvas) {
     projected.forEach(p => {
       if (p.proj.visible) {
         let depthAlpha = 0.35 + (radius - p.proj.z) / (2 * radius) * 0.65;
-        gctx.fillStyle = `rgba(${baseColor}, ${depthAlpha * 0.7})`;
+        let dotSize = depthAlpha * 2;
+        // Brighter front dots
+        gctx.fillStyle = `rgba(${baseColor}, ${depthAlpha * 0.9})`;
         gctx.beginPath();
-        gctx.arc(p.proj.x, p.proj.y, depthAlpha * 1.5, 0, 2 * Math.PI);
+        gctx.arc(p.proj.x, p.proj.y, dotSize, 0, 2 * Math.PI);
         gctx.fill();
+        // Glow on front dots
+        if (depthAlpha > 0.6) {
+          gctx.shadowBlur = 8;
+          gctx.shadowColor = `rgba(${baseColor}, 0.4)`;
+          gctx.fill();
+          gctx.shadowBlur = 0;
+        }
       }
     });
     
@@ -595,7 +628,7 @@ if (globeCanvas) {
       let p2 = project(line.end, rotationX, rotationY);
       
       if (p1.visible && p2.visible) {
-        gctx.strokeStyle = isExecutive ? 'rgba(59, 130, 246, 0.4)' : line.color;
+        gctx.strokeStyle = `rgba(${baseColor}, 0.5)`;
         gctx.lineWidth = 1.5;
         
         gctx.beginPath();
@@ -617,12 +650,11 @@ if (globeCanvas) {
         let signalX = (1 - t) * (1 - t) * p1.x + 2 * (1 - t) * t * cx + t * t * p2.x;
         let signalY = (1 - t) * (1 - t) * p1.y + 2 * (1 - t) * t * cy + t * t * p2.y;
         
-        gctx.fillStyle = isExecutive ? '#10b981' : '#00ff88';
+        gctx.fillStyle = `rgba(${baseColor}, 1)`;
         gctx.beginPath();
         gctx.arc(signalX, signalY, 3.5, 0, 2 * Math.PI);
-        gctx.fill();
-        gctx.shadowBlur = 10;
-        gctx.shadowColor = isExecutive ? '#10b981' : '#00ff88';
+        gctx.shadowBlur = 12;
+        gctx.shadowColor = `rgba(${baseColor}, 0.6)`;
         gctx.fill();
         gctx.shadowBlur = 0;
       }
@@ -666,8 +698,6 @@ if (threatConsole) {
   }
   
   function addLogLine() {
-    const isExecutive = document.body.classList.contains('executive-mode');
-    
     let event = logEvents[Math.floor(Math.random() * logEvents.length)];
     
     const line = document.createElement('div');
@@ -675,9 +705,6 @@ if (threatConsole) {
     
     let typeClass = `log-${event.type}`;
     let typeText = event.type.toUpperCase();
-    
-    if (isExecutive && event.type === 'info') typeClass = 'log-info';
-    if (isExecutive && event.type === 'warn') typeClass = 'log-warn';
     
     line.innerHTML = `<span class="log-time">${getTimestamp()}</span><span class="${typeClass}">[${typeText}]</span> ${event.msg}`;
     
@@ -702,3 +729,4 @@ if (threatConsole) {
   
   setTimeout(runConsoleTick, 3500);
 }
+
