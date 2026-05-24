@@ -25,22 +25,13 @@
   <meta name="twitter:description" content="Certified SOC Analyst | Ethical Hacker | OSINT Specialist"/>
   <meta name="twitter:image" content="https://anshulsharmaofficial001.github.io/photo.jpg"/>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="dragon.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <style>html{scroll-behavior:smooth}.section-title,.about-grid,.skills-grid,.projects-grid,.timeline,.cert-grid,.threat-grid,.contact-wrapper{will-change:transform,opacity;backface-visibility:hidden}</style>
 </head>
-<body class="dragon-theme">
+<body>
 
   <!-- Matrix Canvas Background -->
   <canvas id="matrix"></canvas>
-
-  <!-- Dragon Background -->
-  <div class="dragon-bg">
-    <img src="dragon.jpg" alt="" class="dragon-img"/>
-    <div class="dragon-fire-glow"></div>
-    <div class="dragon-overlay"></div>
-  </div>
 
   <!-- Navbar -->
   <nav id="navbar">
@@ -56,6 +47,11 @@
       <li><a href="card.html" target="_blank"><i class="fas fa-id-card"></i> Card</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="theme-switch-wrapper">
+      <button id="theme-toggle" class="theme-btn" title="Switch Theme">
+        <i class="fas fa-user-tie"></i> <span class="theme-text">Executive Mode</span>
+      </button>
+    </div>
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
@@ -74,10 +70,9 @@
       </div>
       <p class="tagline">"I don't hack to destroy — I hack to defend"</p>
       <div class="hero-btns">
-        <a href="#projects" class="btn btn-primary btn-animated"><i class="fas fa-code"></i> View Projects</a>
-        <a href="#contact" class="btn btn-outline btn-animated"><i class="fas fa-paper-plane"></i> Contact Me</a>
-        <a href="resume.html" target="_blank" class="btn btn-outline btn-animated"><i class="fas fa-file-pdf"></i> Resume</a>
-        <a href="card.html" target="_blank" class="btn btn-outline btn-animated"><i class="fas fa-id-card"></i> Digital Card</a>
+        <a href="#projects" class="btn btn-primary"><i class="fas fa-code"></i> View Projects</a>
+        <a href="resume.html" target="_blank" class="btn btn-outline"><i class="fas fa-file-pdf"></i> Resume</a>
+        <a href="card.html" target="_blank" class="btn btn-outline"><i class="fas fa-id-card"></i> Digital Card</a>
       </div>
       <div class="hero-socials">
         <a href="https://github.com/anshulsharmaofficial001" target="_blank"><i class="fab fa-github"></i></a>
@@ -422,19 +417,10 @@
 
   <!-- Threat Center Section -->
   <section id="threat-center" class="section">
-    <div class="container">
+    <div class="container" style="text-align: center;">
       <h2 class="section-title"><span class="accent">//</span> SOC Threat Intelligence Map</h2>
       <div class="threat-grid">
-        <div class="threat-map-card" style="grid-column:1/-1">
-          <div class="panel-header">
-            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-            <span class="panel-title"><i class="fas fa-globe"></i> Interactive 3D Threat Globe</span>
-          </div>
-          <div class="panel-body map-container">
-            <canvas id="threat-globe"></canvas>
-            <div class="globe-overlay-hint">Drag to rotate globe</div>
-          </div>
-        </div>
+        <canvas id="threat-globe"></canvas>
       </div>
     </div>
   </section>
@@ -495,25 +481,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    // Smooth section reveal animations
-    const smoothObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          requestAnimationFrame(() => {
-            entry.target.style.transition = 'opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1)';
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          });
-          smoothObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.section-title, .about-grid, .skills-grid, .projects-grid, .timeline, .cert-grid, .threat-grid, .contact-wrapper').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      smoothObserver.observe(el);
-    });
-  </script>
 </body>
 </html>
